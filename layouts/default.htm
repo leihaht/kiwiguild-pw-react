@@ -1,0 +1,33 @@
+==
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <link href="{{ [
+      'assets/css/vendor.min.css'
+    ]|theme }}" rel="stylesheet">
+    {% styles %}
+
+  </head>
+  <body>
+    <div id="root"></div>
+    <section id="page" class="container m-b-3">
+      {% page %}
+    </section>
+    <script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+    <script src="{{ [
+      'assets/js/vendor.min.js'
+    ]|theme }}"></script>
+    {% framework %}
+    <script src="{{ [
+      'assets/js/app.js'
+    ]|theme }}"></script>
+    {% scripts %}
+  </body>
+</html>
