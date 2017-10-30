@@ -23,8 +23,8 @@ module.exports = {
     },
     // Where you want the output to go
     output: {
-        path: path.resolve(__dirname, 'assets'),
-        filename: 'js/[name].js'
+        path: path.resolve(__dirname, '../site/templates'),
+        filename: 'scripts/[name].js'
     },
     plugins: [
         //new CleanWebpackPlugin(['assets']),
@@ -34,7 +34,7 @@ module.exports = {
                 NODE_ENV: JSON.stringify('production')
             }
         }),
-        //new webpack.optimize.UglifyJsPlugin(),
+        new webpack.optimize.UglifyJsPlugin(),
         new webpack.ProvidePlugin({
             $: 'jquery',
             'window.$': 'jquery',
@@ -46,11 +46,11 @@ module.exports = {
         // performance and is used in prod environments. Styles load faster on their own .css
         // file as they dont have to wait for the JS to load.
         new ExtractTextPlugin({
-            filename: "css/[name].min.css"
+            filename: "styles/[name].min.css"
         }),
         new webpack.optimize.CommonsChunkPlugin({
             name: "vendor",
-            filename: "js/vendor.min.js",
+            filename: "scripts/vendor.min.js",
             chunks: ['vendor']
         })
     ],
