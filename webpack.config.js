@@ -13,7 +13,7 @@ module.exports = {
             'webpack/hot/only-dev-server',
             'react-hot-loader/patch',
             './src/styles/vendor.scss',
-            'whatwg-fetch',
+            'axios',
             path.resolve(__dirname, 'src/index.jsx')
         ],
         vendor: [

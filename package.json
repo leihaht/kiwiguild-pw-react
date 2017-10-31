@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "axios": "^0.17.0",
     "expose-loader": "^0.7.3",
     "jquery": "^3.2.1",
     "popper.js": "^1.12.6",

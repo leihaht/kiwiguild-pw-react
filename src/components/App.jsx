@@ -3,11 +3,10 @@ import React from 'react';
 //import { footer } from '../styles/footer.scss';
 //import Routes from '../routes';
 
-import AppWithFetch from './AppWithFetch';
+//import AppWithFetch from './AppWithFetch';
 
 const App = () =>
     <div>
-        <AppWithFetch />
     </div>;
 
 export default App;

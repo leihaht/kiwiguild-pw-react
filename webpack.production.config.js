@@ -12,7 +12,7 @@ module.exports = {
             'jquery',
             'popper.js',
             'bootstrap',
-            'whatwg-fetch',
+            'axios',
             './src/styles/vendor.scss'
         ],
         app: [
