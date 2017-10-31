@@ -4,7 +4,6 @@ import React from 'react';
 //import { footer } from '../styles/footer.scss';
 //import Routes from '../routes';
 
-
 const API = 'http://localhost/processwire-test/api/test'
 
 const DEFAULT_QUERY = {
