@@ -9,9 +9,10 @@ module.exports = {
     // The entry file. All your app roots from here.
     entry: {
         vendor: [
-            'jquery',
+            'reactstrap',
+            //'jquery',
             'popper.js',
-            'bootstrap',
+            //'bootstrap',
             'axios',
             './src/styles/vendor.scss'
         ],
@@ -36,10 +37,10 @@ module.exports = {
         }),
         new webpack.optimize.UglifyJsPlugin(),
         new webpack.ProvidePlugin({
-            $: 'jquery',
-            'window.$': 'jquery',
-            jQuery: 'jquery',
-            'window.jQuery': 'jquery',
+            //$: 'jquery',
+            //'window.$': 'jquery',
+            //jQuery: 'jquery',
+            //'window.jQuery': 'jquery',
             Popper: ['popper.js', 'default']
         }),
         // extracts the css from the js files and puts them on a separate .css file. this is for
@@ -59,7 +60,7 @@ module.exports = {
         // some jQuery plugin tried to load its own jQuery not jQuery in the webpack.
         // alias is here to force them to use jQuery in the webpack
         alias: {
-            'jquery': require.resolve('jquery')
+            //'jquery': require.resolve('jquery')
         }
     },
     module: {

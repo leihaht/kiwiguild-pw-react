@@ -6,7 +6,7 @@ import { AppContainer } from 'react-hot-loader';
 
 //const store = configureStore();
 
-import App from './components/App';
+import App from './App';
 
 //console.log(process.env.NODE_ENV);
 
