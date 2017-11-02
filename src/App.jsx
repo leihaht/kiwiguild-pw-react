@@ -4,11 +4,13 @@ import React from 'react';
 //import Routes from '../routes';
 
 //import AppWithFetch from './AppWithFetch';
-import { Header } from './components';
+import { Header, KiwiForum } from './components';
+
 
 const App = () =>
     <div>
         <Header />
+        <KiwiForum />
     </div>;
 
 export default App;
