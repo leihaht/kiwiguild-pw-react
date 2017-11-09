@@ -20,13 +20,20 @@ const initialState = {
  * reducer for top level app state
  */
 export const appReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case START_FETCHING_FORUMS:
-      return Object.assign({}, state, {
-        fetchingForums: true,
-      });
+    switch (action.type) {
+        case START_FETCHING_FORUMS:
+            return Object.assign({}, state, {
+                fetchingForums: true,
+            });
 
-    default:
-      return state;
-  }
+        case FETCHING_FORUMS_SUCCESS:
+            return Object.assign({}, state, {
+                forums: action.payload,
+                fetchingForums: false,
+                error: false,
+            });
+
+        default:
+            return state;
+    }
 };

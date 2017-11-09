@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 
+
+// components
+import Header from './Components/Header'
+
 class App extends Component {
   componentDidMount() {
     const {
@@ -29,7 +33,8 @@ class App extends Component {
     if (forums) {
         return (
             <div>
-                {title}
+                <Header />
+                {this.props.children}
             </div>
         );
     }
