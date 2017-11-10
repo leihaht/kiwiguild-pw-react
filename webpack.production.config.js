@@ -8,17 +8,23 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 module.exports = {
     // The entry file. All your app roots from here.
     entry: {
+        //common:
         vendor: [
+            // Polyfills go here too, like babel-polyfill or whatwg-fetch
+            'babel-polyfill',
+            'react',
+            'react-dom',
+            'react-router-dom',
             'reactstrap',
             //'jquery',
             'popper.js',
             //'bootstrap',
+            'immutable',
             'axios',
             './src/styles/vendor.scss'
         ],
         app: [
-            // Polyfills go here too, like babel-polyfill or whatwg-fetch
-            'babel-polyfill',
+
             path.resolve(__dirname, 'src/index.jsx')
         ]
     },

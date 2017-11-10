@@ -6,10 +6,10 @@ import { getForums } from './actions';
 // store 안의 state 값을 props 로 연결해줍니다.
 let mapStateToProps = (state) => {
     return {
-      forums: state.app.forums,
-      currentForum: state.app.currentForum,
+      forums: state.app.get('forums'),//state.app.forums,
+      currentForum: state.app.get('currentForum'),
     };
-}
+};
 
 /*
     액션 생성자를 사용하여 액션을 생성하고,

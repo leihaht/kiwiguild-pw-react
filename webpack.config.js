@@ -13,14 +13,13 @@ module.exports = {
             'webpack/hot/only-dev-server',
             'react-hot-loader/patch',
             './src/styles/vendor.scss',
+            'immutable',
             'axios',
-            path.resolve(__dirname, 'src/index.jsx')
-        ],
-        vendor: [
             'reactstrap',
             //'jquery',
             'popper.js',
             //'bootstrap'
+            path.resolve(__dirname, 'src/index.jsx')
         ]
     },
     output: {
@@ -67,7 +66,11 @@ module.exports = {
                     loader: 'babel-loader',
                     options: {
                         presets: ['react', 'env'],
-                        plugins: ["transform-react-jsx", "react-hot-loader/babel"]
+                        plugins: [
+                            "transform-react-jsx",
+                            "react-hot-loader/babel",
+                            ["transform-object-rest-spread", { "useBuiltIns": true }]
+                        ]
                     }
                 }
             },

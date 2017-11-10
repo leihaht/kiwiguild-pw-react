@@ -1,19 +1,22 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
-//import { configureStore, history } from './store/configureStore';
-//import Root from './containers/Root';
+import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
 
-//const store = configureStore();
+import appStore from './store/configureStore';
 
 import App from './App';
 
-//console.log(process.env.NODE_ENV);
 
 const renderApp = Component => {
     render(
         <AppContainer>
-            <Component />
+            <BrowserRouter>
+                <Provider store={appStore}>
+                    <Component />
+                </Provider>
+            </BrowserRouter>
         </AppContainer>,
         document.getElementById('root')
     );
@@ -26,26 +29,3 @@ if (module.hot) {
         renderApp(App);
     });
 }
-/*
-render(
-    <AppContainer>
-        <Root store={store} history={history} />
-    </AppContainer>,
-    document.getElementById('root')
-);
-
-if (module.hot) {
-    module.hot.accept('./containers/Root', () => {
-        const newConfigureStore = require('./store/configureStore');
-        const newStore = newConfigureStore.configureStore();
-        const newHistory = newConfigureStore.history;
-        const NewRoot = require('./containers/Root').default;
-        render(
-            <AppContainer>
-                <NewRoot store={newStore} history={newHistory} />
-            </AppContainer>,
-            document.getElementById('root')
-        );
-    });
-}
-*/

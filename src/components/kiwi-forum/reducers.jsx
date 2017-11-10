@@ -1,3 +1,4 @@
+import { Map, List } from 'immutable';
 import {
   START_FETCHING_FORUMS,
   STOP_FETCHING_FORUMS,
@@ -9,12 +10,12 @@ import {
   FETCHING_USER_FAILURE,
 } from './constants';
 
-const initialState = {
-  fetchingForums: false,
-  forums: null,
-  currentForum: 'general',
-  error: false,
-};
+const initialState = Map({
+    fetchingForums: false,
+    forums: null,
+    currentForum: 'general',
+    error: false,
+});
 
 /**
  * reducer for top level app state
@@ -22,16 +23,12 @@ const initialState = {
 export const appReducer = (state = initialState, action) => {
     switch (action.type) {
         case START_FETCHING_FORUMS:
-            return Object.assign({}, state, {
-                fetchingForums: true,
-            });
+            return state.set('fetchingForums', true);
 
         case FETCHING_FORUMS_SUCCESS:
-            return Object.assign({}, state, {
-                forums: action.payload,
-                fetchingForums: false,
-                error: false,
-            });
+            return state.set('forums', action.payload)
+                .set('fetchingForums', false)
+                .set('error', false);
 
         default:
             return state;

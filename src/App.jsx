@@ -1,16 +1,15 @@
 import React from 'react';
-//import { Link } from 'react-router-dom';
-//import { footer } from '../styles/footer.scss';
-//import Routes from '../routes';
+import { Route } from 'react-router-dom';
+import { Home, Forum } from './views';
 
-//import AppWithFetch from './AppWithFetch';
-import { Header, KiwiForum } from './components';
+import { Header } from './components';
 
 
 const App = () =>
     <div>
         <Header />
-        <KiwiForum />
+        <Route exact path="/" component={Home} />
+        <Route path="/forum" component={Forum} />
     </div>;
 
 export default App;
