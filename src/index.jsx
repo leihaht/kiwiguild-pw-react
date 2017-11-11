@@ -26,6 +26,8 @@ renderApp(App);
 
 if (module.hot) {
     module.hot.accept('./App', () => {
-        renderApp(App);
+        // to reload the page by require App again
+        const NextApp = require('./App').default;
+        renderApp(NextApp);
     });
 }

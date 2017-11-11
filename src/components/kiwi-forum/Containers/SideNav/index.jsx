@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import App from './App';
+import SideNav from './SideNav';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom'
 
 import { getForums } from './actions';
 
-class AppContainer extends Component {
+class SideNavContainer extends Component {
     componentDidMount() {
       const {
         getForums,
@@ -18,7 +17,7 @@ class AppContainer extends Component {
     render() {
         return (
             <div>
-                <App />
+                <SideNav />
             </div>
         );
     }
@@ -41,7 +40,7 @@ let mapDispatchToProps = (dispatch) => {
     };
 }
 
-export default withRouter(connect(
+export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(AppContainer));
+)(SideNavContainer);

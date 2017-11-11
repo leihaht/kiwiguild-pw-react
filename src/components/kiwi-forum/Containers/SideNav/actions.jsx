@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import {
   START_FETCHING_FORUMS,
   STOP_FETCHING_FORUMS,
@@ -8,7 +7,7 @@ import {
   START_FETCHING_USER,
   FETCHING_USER_SUCCESS,
   FETCHING_USER_FAILURE,
-} from './constants';
+} from '../../constants';
 import {
   fetchForums,
   fetchUser,

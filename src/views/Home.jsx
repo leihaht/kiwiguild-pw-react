@@ -1,12 +1,13 @@
 import React from 'react';
+import { Container } from 'reactstrap';
 
 const Home = () => {
     return (
-        <div>
+        <Container>
             <h2>
                 홈
             </h2>
-        </div>
+        </Container>
     );
 };
 

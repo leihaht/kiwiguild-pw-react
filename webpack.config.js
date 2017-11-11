@@ -8,10 +8,10 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 module.exports = {
     entry: {
         app: [
-            'babel-polyfill',
             'webpack-dev-server/client?http://localhost:3000',
             'webpack/hot/only-dev-server',
             'react-hot-loader/patch',
+            'babel-polyfill',
             './src/styles/vendor.scss',
             'immutable',
             'axios',
@@ -24,7 +24,8 @@ module.exports = {
     },
     output: {
         path: path.resolve(__dirname, 'pub'),
-        filename: 'js/[name].js'
+        filename: 'js/[name].js',
+        publicPath: '/'
     },
     devtool: 'eval-source-map',
     plugins: [

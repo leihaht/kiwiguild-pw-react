@@ -1,11 +1,9 @@
 import React from 'react';
 
-import AppContainer from './AppContainer';
+import App from './App';
 
 const KiwiForum = () =>
-    <div>
-        <AppContainer />
-    </div>
+        <App />
 ;
 
 export default KiwiForum;

@@ -8,7 +8,7 @@ import {
   START_FETCHING_USER,
   FETCHING_USER_SUCCESS,
   FETCHING_USER_FAILURE,
-} from './constants';
+} from '../../constants';
 
 const initialState = Map({
     fetchingForums: false,

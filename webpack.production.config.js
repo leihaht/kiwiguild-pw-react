@@ -31,7 +31,8 @@ module.exports = {
     // Where you want the output to go
     output: {
         path: path.resolve(__dirname, '../site/templates'),
-        filename: 'scripts/[name].js'
+        filename: 'scripts/[name].js',
+        publicPath: '/processwire-test'
     },
     plugins: [
         //new CleanWebpackPlugin(['assets']),

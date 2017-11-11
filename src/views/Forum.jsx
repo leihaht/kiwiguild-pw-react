@@ -1,11 +1,12 @@
 import React from 'react';
+import { Container } from 'reactstrap';
 import { KiwiForum } from '../components';
 
 const Forum = () => {
     return (
-        <div>
+        <Container>
             <KiwiForum />
-        </div>
+        </Container>
     );
 };
 

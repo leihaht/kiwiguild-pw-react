@@ -1,6 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
+class ForumFeed extends Component {
+    render() {
+        return (
+            <div></div>
+        );
+    }
+};
+/*
 import {
   getDiscussions,
   getPinnedDiscussions,
@@ -99,23 +106,23 @@ class ForumFeed extends Component {
     );
   }
 }
-
+*/
 
 // store 안의 state 값을 props 로 연결해줍니다.
 let mapStateToProps = (state) => {
     return {
-        currentForum: state.app.currentForum,
-        currentForumId: () => {
-            const currentForumObj = _.find(state.app.forums, { forum_slug: state.app.currentForum });
-            if (currentForumObj) return currentForumObj._id;
-            else return null;
-        },
-        fetchingDiscussions: state.feed.fetchingDiscussions,
-        discussions: state.feed.discussions,
-        fetchingPinnedDiscussions: state.feed.fetchingPinnedDiscussions,
-        sortingMethod: state.feed.sortingMethod,
-        pinnedDiscussions: state.feed.pinnedDiscussions,
-        error: state.feed.error,
+        //currentForum: state.app.currentForum,
+        //currentForumId: () => {
+            //const currentForumObj = _.find(state.app.forums, { forum_slug: state.app.currentForum });
+            //if (currentForumObj) return currentForumObj._id;
+            //else return null;
+        //},
+        //fetchingDiscussions: state.feed.fetchingDiscussions,
+        //discussions: state.feed.discussions,
+        //fetchingPinnedDiscussions: state.feed.fetchingPinnedDiscussions,
+        //sortingMethod: state.feed.sortingMethod,
+        //pinnedDiscussions: state.feed.pinnedDiscussions,
+        //error: state.feed.error,
     };
 }
 
@@ -125,9 +132,9 @@ let mapStateToProps = (state) => {
 */
 let mapDispatchToProps = (dispatch) => {
     return {
-      getDiscussions: (currentForumId, feedChanged, sortingMethod, sortingChanged) => { dispatch(getDiscussions(currentForumId, feedChanged, sortingMethod, sortingChanged)); },
-      getPinnedDiscussions: (currentForumId, feedChanged) => { dispatch(getPinnedDiscussions(currentForumId, feedChanged)); },
-      updateSortingMethod: (method) => { dispatch(updateSortingMethod(method)); },
+      //getDiscussions: (currentForumId, feedChanged, sortingMethod, sortingChanged) => { dispatch(getDiscussions(currentForumId, feedChanged, sortingMethod, sortingChanged)); },
+      //getPinnedDiscussions: (currentForumId, feedChanged) => { dispatch(getPinnedDiscussions(currentForumId, feedChanged)); },
+      //updateSortingMethod: (method) => { dispatch(updateSortingMethod(method)); },
     };
 }
 
