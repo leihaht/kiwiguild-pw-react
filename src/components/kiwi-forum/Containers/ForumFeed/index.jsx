@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+
 class ForumFeed extends Component {
     render() {
         return (

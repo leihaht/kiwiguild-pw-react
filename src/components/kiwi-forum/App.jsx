@@ -12,10 +12,7 @@ const App = (props) => (
             <SideNav />
         </Col>
         <Col sm="9">
-            <Switch>
-                <Route path="/forum/t/:forum" component={ForumFeed} />
-                <Route path="/forum" component={ForumFeed} />
-            </Switch>
+            <ForumFeed />
         </Col>
     </Row>
 );

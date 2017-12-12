@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 
 // reducers
-import { appReducer } from '../components/kiwi-forum/Containers/SideNav/reducers';
+import { appReducer } from '../components/kiwi-forum/reducers';
 
 // root reducer for app
 const rootReducer = combineReducers({

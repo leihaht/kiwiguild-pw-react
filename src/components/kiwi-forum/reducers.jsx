@@ -8,12 +8,12 @@ import {
   START_FETCHING_USER,
   FETCHING_USER_SUCCESS,
   FETCHING_USER_FAILURE,
-} from '../../constants';
+} from './constants';
 
 const initialState = Map({
     fetchingForums: false,
     forums: null,
-    currentForum: 'general',
+    currentForum: '',
     error: false,
 });
 
@@ -29,6 +29,9 @@ export const appReducer = (state = initialState, action) => {
             return state.set('forums', action.payload)
                 .set('fetchingForums', false)
                 .set('error', false);
+
+        case UPDATECURRENTFORUM:
+            return state.set('currentForum', action.payload);
 
         default:
             return state;

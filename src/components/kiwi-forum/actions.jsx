@@ -7,7 +7,7 @@ import {
   START_FETCHING_USER,
   FETCHING_USER_SUCCESS,
   FETCHING_USER_FAILURE,
-} from '../../constants';
+} from './constants';
 import {
   fetchForums,
   fetchUser,
@@ -26,5 +26,16 @@ export const getForums = () => {
       data => dispatch({ type: FETCHING_FORUMS_SUCCESS, payload: data.data }),
       error => dispatch({ type: FETCHING_FORUMS_FAILURE })
     );
+  };
+};
+/**
+ * update current forum when route change occurs
+ * @param  {String} currentForum
+ * @return {action}
+ */
+export const updateCurrentForum = (currentForum) => {
+  return {
+    type: UPDATECURRENTFORUM,
+    payload: currentForum,
   };
 };
