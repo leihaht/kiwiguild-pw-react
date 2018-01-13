@@ -7,14 +7,10 @@ import SideNav from './Containers/SideNav';
 import ForumFeed from './Containers/ForumFeed';
 
 const App = (props) => (
-    <Row>
-        <Col sm="3">
-            <SideNav />
-        </Col>
-        <Col sm="9">
-            <ForumFeed />
-        </Col>
-    </Row>
+    <Container>
+        <SideNav />
+        <ForumFeed />
+    </Container>
 );
 
 export default App;

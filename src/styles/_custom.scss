@@ -1,0 +1,7 @@
+button, html [type="button"], [type="reset"], [type="submit"] {
+    -webkit-appearance: initial;
+}
+button, html input[type="button"], input[type="reset"], input[type="submit"] {
+    -webkit-appearance: button;
+    cursor: pointer;
+}

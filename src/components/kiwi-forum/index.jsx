@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import App from './App';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom'
+//import { withRouter } from 'react-router-dom'
 
-import { getForums, updateCurrentForum } from './actions';
+import { appOperations } from './modules/app';
 
 class KiwiForum extends Component {
     componentDidMount() {
@@ -17,17 +17,24 @@ class KiwiForum extends Component {
       getForums();
 
       // set current forum based on route
-      const currentForum = match.params.forum || '';
-      //updateCurrentForum(currentForum);
+      const currentForum = match.params.forum || 'general';
+      updateCurrentForum(currentForum);
 
     }
 
     render() {
+      const { forums } = this.props;
+
+      // render only if we get the forum lists
+      if (forums) {
         return (
-            <div>
-                <App />
-            </div>
+            <App />
         );
+      }
+
+      return (
+        <div>Loading...</div>
+      );
     }
 }
 
@@ -45,12 +52,12 @@ let mapStateToProps = (state) => {
 */
 let mapDispatchToProps = (dispatch) => {
     return {
-      getForums: () => { dispatch(getForums()); },
-      updateCurrentForum: (currentForum) => { dispatch(updateCurrentForum(currentForum)); },
+      getForums: () => { dispatch(appOperations.getForums()); },
+      updateCurrentForum: (currentForum) => { dispatch(appOperations.updateCurrentForum(currentForum)); },
     };
 }
 
-export default withRouter(connect(
+export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(KiwiForum));
+)(KiwiForum);

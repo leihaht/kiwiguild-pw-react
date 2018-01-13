@@ -2,9 +2,9 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 
 import { Home, Forum } from './views';
-
 import { Header } from './components';
 
+import 'font-awesome';
 
 const App = () =>
         <div>

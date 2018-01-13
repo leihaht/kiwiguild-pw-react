@@ -56,6 +56,8 @@ module.exports = {
         // alias is here to force them to use jQuery in the webpack
         alias: {
             //'jquery': require.resolve('jquery')
+			'font-awesome': path.resolve(__dirname, "node_modules/font-awesome/css/font-awesome.min.css"),
+            'flarum-style': path.resolve(__dirname, "src/styles/flarum.scss")
         }
     },
     module: {
@@ -76,7 +78,7 @@ module.exports = {
                 }
             },
             {
-                test: /\.scss$/,
+                test: /\.(scss|css)$/,
                 use: [{
                     loader: 'style-loader'
                 },{
@@ -94,7 +96,11 @@ module.exports = {
                 },{
                     loader: 'sass-loader'
                 }]
-            }
+            },
+            {
+				test: /\.(svg|woff2?|ttf|eot|jpe?g|png|gif)(\?.*)?$/i,
+				use: 'url-loader'
+			}
         ]
     }
 };

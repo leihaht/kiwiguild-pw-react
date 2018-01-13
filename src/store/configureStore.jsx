@@ -2,9 +2,17 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import { combineReducers } from 'redux';
 import thunk from 'redux-thunk';
 
-// rootReducer
-import rootReducer from '../reducers';
+// reducers
+import appReducer from '../components/kiwi-forum/modules/app';
+import feedReducer from '../components/kiwi-forum/modules/forumFeed';
+import buttonReducer from '../components/kiwi-forum/modules/button';
 
+// root reducer for app
+const rootReducer = combineReducers({
+  app: appReducer,
+  feed: feedReducer,
+  button: buttonReducer
+});
 
 const isDevelopment = process.env.NODE_ENV === 'development'; // 환경이 개발모드인지 확인합니다
 

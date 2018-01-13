@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import classnames from 'classnames/bind';
+import styles from 'flarum-style';
+
+const cx = classnames.bind(styles);
 
 class NewDiscussion extends Component {
     constructor(props) {
@@ -19,7 +23,16 @@ class NewDiscussion extends Component {
     render() {
         return (
             <div>
-                <Button color="primary" onClick={this.toggle}>{this.props.buttonLabel}</Button>
+                <button
+                    className={cx('Button', 'Button--primary', 'IndexPage-newDiscussion', 'hasIcon')}
+                    itemclassname="App-primaryControl"
+                    type="button"
+                    title={this.props.buttonLabel}
+                    onClick={this.toggle}
+                    >
+                        <i className={cx('icon', 'fa', 'fa-edit', 'Button-icon')}></i>
+                        <span className={cx('Button-label')}>{this.props.buttonLabel}</span>
+                </button>
                 <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
                   <ModalHeader toggle={this.toggle}>Modal title</ModalHeader>
                   <ModalBody>

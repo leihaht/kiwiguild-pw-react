@@ -1,52 +1,75 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import classnames from 'classnames/bind';
+import styles from 'flarum-style';
+const cx = classnames.bind(styles);
+
+import { feedOperations } from '../../modules/forumFeed';
+
+import FeedBox from '../../Components/FeedBox';
+import Toolbar from '../../Components/Toolbar';
 
 class ForumFeed extends Component {
+    componentDidMount() {
+      const {
+        currentForumId,
+        getDiscussions,
+      } = this.props;
+
+      // get the discussions and pinned discussions
+      getDiscussions(currentForumId());
+    }
+    componentDidUpdate(prevProps) {
+      const {
+        currentForum,
+        currentForumId,
+        getDiscussions,
+      } = this.props;
+
+      // get the discussions again
+      // if the forum didn't matched
+      if (prevProps.currentForum !== currentForum) {
+        const feedChanged = true;
+        getDiscussions(currentForumId(), feedChanged);
+      }
+    }
     render() {
+      const {
+        currentForum,
+        discussions,
+        fetchingDiscussions,
+        sortingMethod,
+        error,
+      } = this.props;
+
+      if (error) {
         return (
-            <div></div>
+          <div>
+            {error}
+          </div>
         );
+      }
+
+      return (
+        <div className={cx('IndexPage-results', 'sideNavOffset')}>
+            <Toolbar />
+            <FeedBox
+                type='general'
+                loading={fetchingDiscussions}
+                discussions={discussions}
+                currentForum={currentForum}
+                activeSortingMethod={sortingMethod}
+            />
+
+        </div>
+      );
     }
 };
 /*
-import {
-  getDiscussions,
-  getPinnedDiscussions,
-  updateSortingMethod,
-} from './actions';
 
 import FeedBox from 'Components/FeedBox';
 
 class ForumFeed extends Component {
-  componentDidMount() {
-    const {
-      currentForumId,
-      getDiscussions,
-      getPinnedDiscussions,
-    } = this.props;
-
-    // get the discussions and pinned discussions
-    getDiscussions(currentForumId());
-    getPinnedDiscussions(currentForumId());
-  }
-
-  componentDidUpdate(prevProps) {
-    const {
-      currentForum,
-      currentForumId,
-      getDiscussions,
-      getPinnedDiscussions,
-    } = this.props;
-
-    // get the discussions again
-    // if the forum didn't matched
-    if (prevProps.currentForum !== currentForum) {
-      const feedChanged = true;
-      getDiscussions(currentForumId(), feedChanged);
-      getPinnedDiscussions(currentForumId(), feedChanged);
-    }
-  }
-
   handleSortingChange(newSortingMethod) {
     const {
       currentForum,
@@ -62,68 +85,23 @@ class ForumFeed extends Component {
   }
 
 
-  render() {
-    const {
-      currentForum,
-      discussions,
-      fetchingDiscussions,
-      pinnedDiscussions,
-      fetchingPinnedDiscussions,
-      sortingMethod,
-      error,
-    } = this.props;
 
-    if (error) {
-      return (
-        <div>
-          {error}
-        </div>
-      );
-    }
-
-    return (
-      <div>
-
-        <div>
-          <FeedBox
-            type='pinned'
-            loading={fetchingPinnedDiscussions}
-            discussions={pinnedDiscussions}
-            currentForum={currentForum}
-          />
-
-          <FeedBox
-            type='general'
-            loading={fetchingDiscussions}
-            discussions={discussions}
-            currentForum={currentForum}
-            onChangeSortingMethod={this.handleSortingChange.bind(this)}
-            activeSortingMethod={sortingMethod}
-          />
-
-        </div>
-
-      </div>
-    );
-  }
 }
 */
 
 // store 안의 state 값을 props 로 연결해줍니다.
 let mapStateToProps = (state) => {
     return {
-        //currentForum: state.app.currentForum,
-        //currentForumId: () => {
-            //const currentForumObj = _.find(state.app.forums, { forum_slug: state.app.currentForum });
-            //if (currentForumObj) return currentForumObj._id;
-            //else return null;
-        //},
-        //fetchingDiscussions: state.feed.fetchingDiscussions,
-        //discussions: state.feed.discussions,
-        //fetchingPinnedDiscussions: state.feed.fetchingPinnedDiscussions,
-        //sortingMethod: state.feed.sortingMethod,
-        //pinnedDiscussions: state.feed.pinnedDiscussions,
-        //error: state.feed.error,
+        currentForum: state.app.get('currentForum'),
+        currentForumId: () => {
+            const currentForumObj = state.app.get('forums').find( (forum) => forum.forum_slug === state.app.get('currentForum') );
+            if (currentForumObj) return currentForumObj._id;
+            else return null;
+        },
+        fetchingDiscussions: state.feed.get('fetchingDiscussions'),
+        discussions: state.feed.get('discussions'),
+        sortingMethod: state.feed.get('sortingMethod'),
+        error: state.feed.get('error'),
     };
 }
 
@@ -133,8 +111,7 @@ let mapStateToProps = (state) => {
 */
 let mapDispatchToProps = (dispatch) => {
     return {
-      //getDiscussions: (currentForumId, feedChanged, sortingMethod, sortingChanged) => { dispatch(getDiscussions(currentForumId, feedChanged, sortingMethod, sortingChanged)); },
-      //getPinnedDiscussions: (currentForumId, feedChanged) => { dispatch(getPinnedDiscussions(currentForumId, feedChanged)); },
+      getDiscussions: (currentForumId, feedChanged, sortingMethod, sortingChanged) => { dispatch(feedOperations.getDiscussions(currentForumId, feedChanged, sortingMethod, sortingChanged)); },
       //updateSortingMethod: (method) => { dispatch(updateSortingMethod(method)); },
     };
 }
