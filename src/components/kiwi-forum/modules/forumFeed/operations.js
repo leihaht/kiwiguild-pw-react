@@ -5,11 +5,11 @@ import axios from 'axios';
  * feed apis
  */
 const fetchDiscussions = (forum_id, sortingMethod) => {
-    return axios.get(`http://localhost/processwire-test/api/forums/${forum_id}/discussions?sort=${sortingMethod}`);
+    return axios.get(`http://localhost/processwire-test/api/tags/${forum_id}/discussions?sort=${sortingMethod}`);
 };
 
 const fetchPinnedDiscussions = (forum_id) => {
-  return axios.get(`/api/forum/${forum_id}/pinned_discussions`);
+  return axios.get(`/api/tags/${forum_id}/pinned_discussions`);
 };
 
 /**

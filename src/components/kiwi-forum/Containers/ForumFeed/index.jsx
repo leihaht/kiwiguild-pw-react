@@ -94,7 +94,7 @@ let mapStateToProps = (state) => {
     return {
         currentForum: state.app.get('currentForum'),
         currentForumId: () => {
-            const currentForumObj = state.app.get('forums').find( (forum) => forum.forum_slug === state.app.get('currentForum') );
+            const currentForumObj = state.app.get('tags').find( (forum) => forum.tag_slug === state.app.get('currentForum') );
             if (currentForumObj) return currentForumObj._id;
             else return null;
         },

@@ -23,10 +23,10 @@ class KiwiForum extends Component {
     }
 
     render() {
-      const { forums } = this.props;
+      const { tags } = this.props;
 
       // render only if we get the forum lists
-      if (forums) {
+      if (tags) {
         return (
             <App />
         );
@@ -41,7 +41,7 @@ class KiwiForum extends Component {
 // store 안의 state 값을 props 로 연결해줍니다.
 let mapStateToProps = (state) => {
     return {
-      forums: state.app.get('forums'),
+      tags: state.app.get('tags'),
       currentForum: state.app.get('currentForum')
     };
 };

@@ -1,6 +1,5 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import { Container } from 'reactstrap';
 import { KiwiForum } from '../components';
 import classnames from 'classnames/bind';
 import styles from 'flarum-style';

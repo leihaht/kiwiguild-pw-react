@@ -2,7 +2,7 @@ import * as actions from "./actions";
 import axios from 'axios';
 
 const fetchForums = (forum_id) => {
-  return axios.get('http://localhost/processwire-test/api/forums');
+  return axios.get('http://localhost/processwire-test/api/tags');
 };
 
 const fetchUser = () => {

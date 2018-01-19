@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+
+import icon from 'helpers/icon';
+
 import classnames from 'classnames/bind';
 import styles from 'flarum-style';
-
 const cx = classnames.bind(styles);
 
 import DropdownButton from '../Buttons/DropdownButton';
@@ -17,7 +19,7 @@ class Toolbar extends Component {
     constructor(props) {
         super(props);
     }
-    
+
   render() {
     return (
         <div className={cx('IndexPage-toolbar')}>
@@ -26,7 +28,13 @@ class Toolbar extends Component {
                     <DropdownButton
                         buttons={buttons}
                         initial={buttons[0].label}
-                    />
+                        attrButtonDropdown={{className: cx('ButtonGroup', 'Dropdown', 'dropdown')}}
+                        attrDropdownToggle={{className: cx('Dropdown-toggle', 'Button'), caret: true}}
+                        attrDropdownMenu={{tag: 'ul', className: cx('Dropdown-menu')}}
+                        attrDropdownItem={{tag: 'li'}}
+                    >
+                        <span className="Button-label">{buttons[0].label}</span>
+                    </DropdownButton>
                 </li>
             </ul>
             <ul className={cx('IndexPage-toolbar-action')}>

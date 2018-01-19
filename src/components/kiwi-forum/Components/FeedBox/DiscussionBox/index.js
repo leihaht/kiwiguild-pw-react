@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem, Tooltip } from 'reactstrap';
 import classnames from 'classnames/bind';
 import styles from 'flarum-style';
 
 const cx = classnames.bind(styles);
 
+import DiscussionListItemMain from './DiscussionListItemMain.js';
 //import { buttonOperations } from '../../../modules/button';
 //import GeneralButton from '../../Buttons/GeneralButton';
 
@@ -24,26 +25,29 @@ class DiscussionBox extends Component {
     constructor(props) {
         super(props);
 
-        this.toggle = this.toggle.bind(this);
+        this.toggleDropdown = this.toggleDropdown.bind(this);
+        this.toggleTooltip = this.toggleTooltip.bind(this);
         this.state = {
             dropdownOpen: false,
+            tooltipOpen: false
         };
     }
-    toggle() {
+    toggleDropdown() {
         this.setState({
             dropdownOpen: !this.state.dropdownOpen
         });
     }
+    toggleTooltip() {
+        this.setState({
+            tooltipOpen: !this.state.tooltipOpen
+        });
+    }
   render() {
     const {
-      voteCount,
-      userName,
-      userGitHandler,
-      discussionTitle,
-      time,
-      opinionCount,
-      tags,
-      userProfile,
+        id,
+        replies,
+        discussion,
+        startPost,
     } = this.props;
 
     const timeDisplay = 'time';
@@ -54,7 +58,7 @@ class DiscussionBox extends Component {
             <div className={cx('DiscussionListItem')}>
                 <ButtonDropdown
                     isOpen={this.state.dropdownOpen}
-                    toggle={this.toggle}
+                    toggle={this.toggleDropdown}
                     className={cx('ButtonGroup', 'Dropdown', 'dropdown', 'DiscussionListItem-controls', {open: this.state.dropdownOpen})}
                 >
                     <DropdownToggle
@@ -78,28 +82,15 @@ class DiscussionBox extends Component {
                     </DropdownMenu>
                 </ButtonDropdown>
                 <div className={cx('DiscussionListItem-content', 'Slidable-content')}>
-                    <a href="#" className={cx('DiscussionListItem-author')}>
+                    <a href="#" className={cx('DiscussionListItem-author')} id={'discusstion-'+id}>
                         <span className={cx('Avatar')}>B</span>
                     </a>
+                    <Tooltip placement="right" isOpen={this.state.tooltipOpen} target={'discusstion-'+id} toggle={this.toggleTooltip}>
+                        {startPost.user.name} started {startPost.date}
+                    </Tooltip>
                     <ul className={cx('DiscussionListItem-badges', 'badges')}></ul>
-                    <a href="#" className={cx('DiscussionListItem-main')}>
-                        <h3 className={cx('DiscussionListItem-title')}>{discussionTitle}</h3>
-                        <ul className={cx('DiscussionListItem-info')}>
-                            <li className={cx('item-tags')}>
-                                <span className={cx('TagsLabel')}>
-                                    <span className={cx('TagLabel', 'colored')}>
-                                        <span className={cx('TagLabel-text')}>Dev</span>
-                                    </span>
-                                </span>
-                            </li>
-                            <li className={cx('item-terminalPost')}>
-                                <span><i className="icon fa fa-reply "></i> <span className="username">Ralkage</span> replied
-                                    <time pubdate="true" title={timeDisplay} data-humantime="true">a day ago</time>
-                                </span>
-                            </li>
-                        </ul>
-                    </a>
-                    <span className={cx('DiscussionListItem-count')}>{voteCount}</span>
+                    <DiscussionListItemMain discussion={discussion}/>
+                    <span className={cx('DiscussionListItem-count')}>{replies}</span>
                 </div>
             </div>
         </li>

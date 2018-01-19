@@ -21,7 +21,6 @@ class FeedBox extends Component {
       loading,
       discussions,
       currentForum,
-      userProfile,
     } = this.props;
 
     //let discussionBoxTitle = '';
@@ -45,15 +44,11 @@ class FeedBox extends Component {
                 <ul className={cx('DiscussionList-discussions')}>
                     { discussions && discussions.map((discussion) =>
                         <DiscussionBox
-                          userProfile={userProfile}
                           key={discussion._id}
-                          userName={discussion.user.name || discussion.user.username}
-                          userGitHandler={discussion.user.username}
-                          discussionTitle={discussion.title}
-                          time={discussion.date}
-                          tags={discussion.tags}
-                          opinionCount={discussion.opinion_count}
-                          voteCount={0}
+                          id={discussion._id}
+                          discussion={discussion}
+                          replies={discussion.replies_count}
+                          startPost={discussion.start_post}
                         />
                     ) }
                 </ul>

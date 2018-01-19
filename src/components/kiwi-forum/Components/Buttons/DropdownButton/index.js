@@ -27,48 +27,31 @@ class DropdownButton extends Component {
         });
     }
     render() {
-        const {buttons} = this.props;
+        const {
+            buttons,
+            attrButtonDropdown,
+            attrDropdownToggle,
+            attrDropdownMenu,
+            attrDropdownItem
+        } = this.props;
         return (
-            <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-                <DropdownToggle caret>
-                    {this.state.currentButton}
+            <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.toggle} {...attrButtonDropdown}>
+                <DropdownToggle {...attrDropdownToggle}>
+                    {this.props.children}
                 </DropdownToggle>
-                <DropdownMenu tag='ul'>
+                <DropdownMenu {...attrDropdownMenu}>
                     {
                         buttons.map( btn => {
                             return (
                                 <DropdownItem
                                     key={btn._id}
-                                    tag='li'
-                                    title={btn.label}
+                                    {...attrDropdownItem}
                                     onClick={() => this.handleDropdownButton(btn)}>{btn.label}</DropdownItem>
                         )})
                     }
                 </DropdownMenu>
             </ButtonDropdown>
         );
-    // return (
-    //     <div className={cx('ButtonGroup', 'Dropdown', 'dropdown', {'open': dropdownOpen})}>
-    //         <GeneralButton className={cx('Dropdown-toggle', 'Button')} data-toggle="dropdown" onClick={toggle}>
-    //             {this.state.currentButton}<i className={cx('icon', 'fa', 'fa-caret-down', 'Button-caret')}></i>
-    //         </GeneralButton>
-    //         <ul className={cx('Dropdown-menu', 'dropdown-menu')}>
-    //             {
-    //                 buttons.map( btn => {
-    //                     return (
-    //                         <li key={btn._id}>
-    //                             <GeneralButton
-    //                                 {...(this.state.currentButton === btn.label) && { active: 'true', icon: 'check'}}
-    //                                 hasIcon
-    //                                 type="button"
-    //                                 title={btn.label}
-    //                                 onClick={() => this.handleDropdownButton(btn)}>{btn.label}</GeneralButton>
-    //                         </li>
-    //                 )})
-    //             }
-    //         </ul>
-    //     </div>
-    // );
   }
 }
 

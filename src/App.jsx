@@ -1,16 +1,19 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 
-import { Home, Forum } from './views';
+import { Home, Forum, Discussion } from './views';
 import { Header } from './components';
 
 import 'font-awesome';
 
 const App = () =>
-        <div>
+        <div id="content" className="no-touch">
             <Header />
-            <Route exact path="/" component={Home} />
-            <Route path="/forum" component={Forum} />
+            <Switch>
+                <Route exact path="/" component={Home} />
+                <Route path="/forum/d" component={Discussion} />
+                <Route path="/forum" component={Forum} />
+            </Switch>
         </div>
 ;
 

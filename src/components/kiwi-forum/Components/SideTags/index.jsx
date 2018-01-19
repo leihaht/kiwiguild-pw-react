@@ -6,26 +6,28 @@ import styles from 'flarum-style';
 const cx = classnames.bind(styles);
 
 class SideTags extends Component {
-    renderNavLinks() {
-      const { forums } = this.props;
-
-      if (forums) {
-        return forums.map((forum) => {
-          return {
-            id: forum._id,
-            name: forum.forum_name,
-            link: `/${forum.forum_slug}`,
-          };
-        });
-      }
-
-      return null;
-    }
+    // renderSideTags() {
+    //   const { tags } = this.props;
+    //
+    //   if (tags) {
+    //     return tags.map((tag) => {
+    //       return {
+    //         id: tag._id,
+    //         name: tag.tag_name,
+    //         link: `/${tag.forum_slug}`,
+    //         color: tag.tag_color
+    //       };
+    //     });
+    //   }
+    //
+    //   return null;
+    // }
 
   render() {
-      const navigationLinks = this.renderNavLinks();
+      const { tags } = this.props;
+      //const tags = this.renderSideTags();
 
-      if (navigationLinks) {
+      if (tags) {
         return (
             <div className={cx('ButtonGroup', 'Dropdown', 'dropdown', 'App-titleControl', 'Dropdown--select', 'itemCount15')}>
                 <ul className={cx('Dropdown-menu', 'dropdown-menu')}>
@@ -47,17 +49,17 @@ class SideTags extends Component {
                                 <i className={cx('icon', 'fa', 'fa-th-large', 'Button-icon')}></i><span className={cx('Button-label')}>Tags</span></a>
                     </li>
                     <li className={cx('Dropdown-separator')}></li>
-                    { navigationLinks.map(link => {
+                    { tags.map( t => {
                         return (
                             <li
-                                key={link.id}
-                                className={cx('item-tag'+link.id)}
+                                key={t._id}
+                                className={cx('item-tag'+t._id)}
                             >
                                 <a
                                     className={cx('TagLinkButton', 'hasIcon')}
                                     href="#"
                                     title="Test out Flarum in this tag. Discussions in this tag will be deleted every so often.">
-                                        <span className={cx('icon', 'TagIcon', 'Button-icon')}></span>{link.name}
+                                        <span className={cx('icon', 'TagIcon', 'Button-icon')} style={{backgroundColor: '#'+t.tag_color}}></span>{t.tag_name}
                                 </a>
                             </li>
                         );
@@ -75,7 +77,7 @@ class SideTags extends Component {
 let mapStateToProps = (state) => {
     return {
         //user: state.user,
-        forums: state.app.get('forums'),
+        tags: state.app.get('tags'),
     };
 }
 

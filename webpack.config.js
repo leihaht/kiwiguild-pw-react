@@ -57,7 +57,8 @@ module.exports = {
         alias: {
             //'jquery': require.resolve('jquery')
 			'font-awesome': path.resolve(__dirname, "node_modules/font-awesome/css/font-awesome.min.css"),
-            'flarum-style': path.resolve(__dirname, "src/styles/flarum.scss")
+            'flarum-style': path.resolve(__dirname, "src/styles/flarum.scss"),
+            'helpers' : path.resolve(__dirname, "src/lib/helpers")
         }
     },
     module: {

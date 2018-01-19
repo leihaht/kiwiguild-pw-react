@@ -8,7 +8,7 @@ import * as types from "./types";
 // 값을 설정할때는 state.app.set('forums') 형식으로 한다.
 const initialState = Map({
     fetchingForums: false,
-    forums: null,
+    tags: null,
     currentForum: 'general',
     error: false,
 });
@@ -21,7 +21,7 @@ export default handleActions({
         return state.set('fetchingForums', true);
     },
     [types.FETCHING_FORUMS_SUCCESS]: (state, action) => {
-        return state.set('forums', action.payload)
+        return state.set('tags', action.payload)
             .set('fetchingForums', false)
             .set('error', false);
     },
