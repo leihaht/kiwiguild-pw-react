@@ -5,13 +5,13 @@ import classnames from 'classnames/bind';
 import styles from 'flarum-style';
 const cx = classnames.bind(styles);
 
-import PostBox from '../PostBox';
+import DiscussionCtrl from './DiscussionCtrl';
+import PostBox from './PostBox';
 
-const Discussion = ({discussion}) => (
+const DiscussionPage = ({discussion}) => (
     <div className={cx('DiscussionPage-discussion')}>
         <Container>
-            <nav className={cx('DiscussionPage-nav')}>
-            </nav>
+            <DiscussionCtrl />
             <div className={cx('DiscussionPage-stream')}>
                 <div className={cx('PostStream')}>
                     {
@@ -26,4 +26,4 @@ const Discussion = ({discussion}) => (
         </Container>
     </div>
 );
-export default Discussion;
+export default DiscussionPage;

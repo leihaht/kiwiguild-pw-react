@@ -13,7 +13,7 @@ const fetchUser = () => {
  * get all forum list
  * @return {action}
  */
-export const getForums = () => {
+const getForums = () => {
   return (dispatch, getState) => {
     dispatch(actions.start_fetching());
 
@@ -28,6 +28,23 @@ export const getForums = () => {
  * @param  {String} currentForum
  * @return {action}
  */
-export const updateCurrentForum = (currentForum) => {
+const updateCurrentForum = (currentForum) => {
   return actions.update(currentForum);
+};
+
+// update root class
+const updateRootclass = actions.rootclass;
+
+// open composer popup
+const openComposer = actions.open_composer;
+
+// close composer popup
+const closeComposer = actions.close_composer;
+
+export {
+    getForums,
+    updateCurrentForum,
+    updateRootclass,
+    openComposer,
+    closeComposer,
 };

@@ -11,6 +11,9 @@ const initialState = Map({
     tags: null,
     currentForum: 'general',
     error: false,
+    rootclass: null,
+    isOpenSidePanel: false,
+    isOpenComposer: false,
 });
 
 /**
@@ -27,6 +30,15 @@ export default handleActions({
     },
     [types.UPDATECURRENTFORUM]: (state, action) => {
         return state.set('currentForum', action.payload);
+    },
+    [types.UPDATE_ROOT_CLASS]: (state, action) => {
+        return state.set('rootclass', action.payload);
+    },
+    [types.OPEN_COMPOSER]: (state, action) => {
+        return state.set('isOpenComposer', true);
+    },
+    [types.CLOSE_COMPOSER]: (state, action) => {
+        return state.set('isOpenComposer', false);
     },
 }, initialState);
 /**

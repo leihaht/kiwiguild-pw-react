@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
-
+import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import icon from 'helpers/icon';
 
 import classnames from 'classnames/bind';
 import styles from 'flarum-style';
 const cx = classnames.bind(styles);
-
-import DropdownButton from '../Buttons/DropdownButton';
 
 const buttons = [
     {_id: 0, label: 'Latest'},
@@ -18,6 +16,23 @@ const buttons = [
 class Toolbar extends Component {
     constructor(props) {
         super(props);
+
+        this.handleDropdownButton = this.handleDropdownButton.bind(this);
+        this.toggle = this.toggle.bind(this);
+        this.state = {
+            dropdownOpen: false,
+            currentButton: this.props.initial,
+        };
+    }
+    handleDropdownButton(btn) {
+        this.setState({
+            currentButton: btn.label
+        });
+    }
+    toggle() {
+        this.setState({
+            dropdownOpen: !this.state.dropdownOpen
+        });
     }
 
   render() {
@@ -25,16 +40,22 @@ class Toolbar extends Component {
         <div className={cx('IndexPage-toolbar')}>
             <ul className={cx('IndexPage-toolbar-view')}>
                 <li className={cx('item-sort')}>
-                    <DropdownButton
-                        buttons={buttons}
-                        initial={buttons[0].label}
-                        attrButtonDropdown={{className: cx('ButtonGroup', 'Dropdown', 'dropdown')}}
-                        attrDropdownToggle={{className: cx('Dropdown-toggle', 'Button'), caret: true}}
-                        attrDropdownMenu={{tag: 'ul', className: cx('Dropdown-menu')}}
-                        attrDropdownItem={{tag: 'li'}}
-                    >
-                        <span className="Button-label">{buttons[0].label}</span>
-                    </DropdownButton>
+                    <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.toggle} className={cx('ButtonGroup', 'Dropdown', 'dropdown')}>
+                        <DropdownToggle className={cx('Dropdown-toggle', 'Button')} caret>
+                            <span className="Button-label">{buttons[0].label}</span>
+                        </DropdownToggle>
+                        <DropdownMenu tag='ul' className={cx('Dropdown-menu')}>
+                            {
+                                buttons.map( btn => {
+                                    return (
+                                        <DropdownItem
+                                            key={btn._id}
+                                            tag='li'
+                                            onClick={() => this.handleDropdownButton(btn)}>{btn.label}</DropdownItem>
+                                )})
+                            }
+                        </DropdownMenu>
+                    </ButtonDropdown>
                 </li>
             </ul>
             <ul className={cx('IndexPage-toolbar-action')}>

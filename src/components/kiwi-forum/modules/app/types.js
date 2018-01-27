@@ -8,6 +8,9 @@ const FETCHING_USER_SUCCESS     = 'kiwi-forum/app/FETCHING_USER_SUCCESS';
 const FETCHING_USER_FAILURE     = 'kiwi-forum/app/FETCHING_USER_FAILURE';
 const SIGNOUT_USER_SUCCESS      = 'kiwi-forum/app/SIGNOUT_USER_SUCCESS';
 const SIGNOUT_USER_FAILURE      = 'kiwi-forum/app/SIGNOUT_USER_FAILURE';
+const UPDATE_ROOT_CLASS         = 'kiwi-forum/app/UPDATE_ROOT_CLASS';
+const OPEN_COMPOSER             = 'kiwi-forum/app/OPEN_COMPOSER';
+const CLOSE_COMPOSER            = 'kiwi-forum/app/CLOSE_COMPOSER';
 
 export {
     UPDATECURRENTFORUM,
@@ -19,5 +22,8 @@ export {
     FETCHING_USER_SUCCESS,
     FETCHING_USER_FAILURE,
     SIGNOUT_USER_SUCCESS,
-    SIGNOUT_USER_FAILURE
+    SIGNOUT_USER_FAILURE,
+    UPDATE_ROOT_CLASS,
+    OPEN_COMPOSER,
+    CLOSE_COMPOSER
 };

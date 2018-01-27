@@ -5,7 +5,8 @@ import classnames from 'classnames/bind';
 import styles from 'flarum-style';
 const cx = classnames.bind(styles);
 
-import Discussion from '../../Components/Discussion';
+import DiscussionPage from '../../Components/DiscussionPage';
+import DiscussionList from '../../Components/DiscussionPage/DiscussionList';
 import { feedOperations } from '../../modules/discussionFeed';
 
 class SingleDiscussion extends Component {
@@ -24,7 +25,7 @@ class SingleDiscussion extends Component {
             discussion,
             error,
         } = this.props;
-        
+
         if (error) {
           return (<div className="container">{error}</div>);
         }
@@ -35,7 +36,8 @@ class SingleDiscussion extends Component {
         }
         return (
             <div className={cx('DiscussionPage')}>
-                <Discussion discussion={discussion}/>
+                <DiscussionPage discussion={discussion}/>
+                <DiscussionList />
             </div>
         );
     }
