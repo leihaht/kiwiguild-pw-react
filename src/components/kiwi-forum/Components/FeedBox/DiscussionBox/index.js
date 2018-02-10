@@ -97,27 +97,5 @@ class DiscussionBox extends Component {
     );
   }
 }
-/*
-<div className="ButtonGroup Dropdown dropdown DiscussionListItem-controls itemCount8">
-    <button className="Dropdown-toggle Button Button--icon Button--flat Slidable-underneath Slidable-underneath--right" onClick={toggle}>
-        <i className="icon fa fa-ellipsis-v Button-icon"></i><span className="Button-label"></span><i className="icon fa fa-caret-down Button-caret"></i>
-    </button>
-    <ul className={cx('Dropdown-menu', 'dropdown-menu')}>
-        {
-            buttons.map( btn => {
-                if (btn.label === 'separator') return (<li key={btn._id} className={cx('Dropdown-separator')}></li>)
-                return (
-                    <li key={btn._id}>
-                        <GeneralButton
-                            icon={btn.icon}
-                            hasIcon
-                            type="button"
-                            title={btn.label}
-                        >{btn.label}</GeneralButton>
-                    </li>
-            )})
-        }
-    </ul>
-</div>
-*/
+
 export default DiscussionBox;

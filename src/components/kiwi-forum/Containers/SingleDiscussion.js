@@ -5,9 +5,9 @@ import classnames from 'classnames/bind';
 import styles from 'flarum-style';
 const cx = classnames.bind(styles);
 
-import DiscussionPage from '../../Components/DiscussionPage';
-import DiscussionList from '../../Components/DiscussionPage/DiscussionList';
-import { feedOperations } from '../../modules/discussionFeed';
+import DiscussionPage from '../Components/DiscussionPage';
+import DiscussionList from '../Components/DiscussionPage/DiscussionList';
+import { feedOperations } from '../modules/discussionFeed';
 
 class SingleDiscussion extends Component {
     componentDidMount() {
@@ -17,6 +17,9 @@ class SingleDiscussion extends Component {
       } = this.props;
 
       getDiscussion(match.params.discussion);
+    }
+    handleClickPostCtrl(btnName, postID) {
+        console.log(btnName+' and '+postID);
     }
 
     render () {
@@ -36,8 +39,11 @@ class SingleDiscussion extends Component {
         }
         return (
             <div className={cx('DiscussionPage')}>
-                <DiscussionPage discussion={discussion}/>
                 <DiscussionList />
+                <DiscussionPage
+                    discussion={discussion}
+                    handleClickPostCtrl={this.handleClickPostCtrl}
+                />
             </div>
         );
     }

@@ -1,11 +1,11 @@
 import { createAction } from 'redux-actions';
 import * as types from "./types";
 
-const update            = createAction(types.UPDATECURRENTFORUM);
-const start_fetching    = createAction(types.START_FETCHING_FORUMS);
-const stop_fetching     = createAction(types.STOP_FETCHING_FORUMS);
-const success           = createAction(types.FETCHING_FORUMS_SUCCESS);
-const failure           = createAction(types.FETCHING_FORUMS_FAILURE);
+const update            = createAction(types.UPDATECURRENTTAGS);
+const start_fetching    = createAction(types.START_FETCHING_TAGS);
+const stop_fetching     = createAction(types.STOP_FETCHING_TAGS);
+const success           = createAction(types.FETCHING_TAGS_SUCCESS);
+const failure           = createAction(types.FETCHING_TAGS_FAILURE);
 const start_user        = createAction(types.START_FETCHING_USER);
 const success_user      = createAction(types.FETCHING_USER_SUCCESS);
 const failure_user      = createAction(types.FETCHING_USER_FAILURE);

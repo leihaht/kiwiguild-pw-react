@@ -4,12 +4,27 @@ import classnames from 'classnames/bind';
 import styles from 'flarum-style';
 const cx = classnames.bind(styles);
 
-import { feedOperations } from '../../modules/forumFeed';
+import { feedOperations } from '../modules/forumFeed';
 
-import FeedBox from '../../Components/FeedBox';
-import Toolbar from '../../Components/Toolbar';
+import FeedBox from '../Components/FeedBox';
+import Toolbar from '../Components/Toolbar';
+
+const buttons = [
+    {label: 'Latest', method: ''},
+    {label: 'Top', method: 'top'},
+    {label: 'Newest', method: 'newest'},
+    {label: 'Oldest', method: 'oldest'}
+]
 
 class ForumFeed extends Component {
+    constructor(props) {
+        super(props);
+
+        this.handleSortingChange = this.handleSortingChange.bind(this);
+        this.state = {
+            currentButton: buttons[0].label,
+        };
+    }
     componentDidMount() {
       const {
         currentForumId,
@@ -33,6 +48,24 @@ class ForumFeed extends Component {
         getDiscussions(currentForumId(), feedChanged);
       }
     }
+    handleSortingChange(newSortingButton) {
+        const {
+            currentForum,
+            getDiscussions,
+            updateSortingMethod,
+            sortingMethod,
+        } = this.props;
+
+        this.setState({
+            currentButton: newSortingButton.label
+        });
+
+        if (sortingMethod !== newSortingButton.method) {
+            updateSortingMethod(newSortingButton.method);
+            getDiscussions(currentForum, false, true);
+        }
+    }
+
     render() {
       const {
         currentForum,
@@ -52,7 +85,10 @@ class ForumFeed extends Component {
 
       return (
         <div className={cx('IndexPage-results', 'sideNavOffset')}>
-            <Toolbar />
+            <Toolbar
+                sortButtons={buttons}
+                currentButton={this.state.currentButton}
+                onChangeSortingMethod={this.handleSortingChange} />
             <FeedBox
                 type='general'
                 loading={fetchingDiscussions}
@@ -65,29 +101,6 @@ class ForumFeed extends Component {
       );
     }
 };
-/*
-
-import FeedBox from 'Components/FeedBox';
-
-class ForumFeed extends Component {
-  handleSortingChange(newSortingMethod) {
-    const {
-      currentForum,
-      getDiscussions,
-      updateSortingMethod,
-      sortingMethod,
-    } = this.props;
-
-    if (sortingMethod !== newSortingMethod) {
-      updateSortingMethod(newSortingMethod);
-      getDiscussions(currentForum, false, true);
-    }
-  }
-
-
-
-}
-*/
 
 // store 안의 state 값을 props 로 연결해줍니다.
 let mapStateToProps = (state) => {
@@ -96,7 +109,7 @@ let mapStateToProps = (state) => {
         currentForumId: () => {
             const currentForumObj = state.app.get('tags').find( (forum) => forum.tag_slug === state.app.get('currentForum') );
             if (currentForumObj) return currentForumObj._id;
-            else return null;
+            else return '';
         },
         fetchingDiscussions: state.feed.get('fetchingDiscussions'),
         discussions: state.feed.get('discussions'),
@@ -112,7 +125,7 @@ let mapStateToProps = (state) => {
 let mapDispatchToProps = (dispatch) => {
     return {
       getDiscussions: (currentForumId, feedChanged, sortingMethod, sortingChanged) => { dispatch(feedOperations.getDiscussions(currentForumId, feedChanged, sortingMethod, sortingChanged)); },
-      //updateSortingMethod: (method) => { dispatch(updateSortingMethod(method)); },
+      updateSortingMethod: (method) => { dispatch(feedOperations.updateSortingMethod(method)); },
     };
 }
 

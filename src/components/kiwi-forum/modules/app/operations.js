@@ -2,7 +2,7 @@ import * as actions from "./actions";
 import axios from 'axios';
 
 const fetchForums = (forum_id) => {
-  return axios.get('http://localhost/processwire-test/api/tags');
+  return axios.get(`http://localhost/processwire-test/api/tags/${forum_id}`);
 };
 
 const fetchUser = () => {
@@ -13,11 +13,11 @@ const fetchUser = () => {
  * get all forum list
  * @return {action}
  */
-const getForums = () => {
+const getForums = (currentForum) => {
   return (dispatch, getState) => {
     dispatch(actions.start_fetching());
 
-    fetchForums().then(
+    fetchForums(currentForum).then(
       data => dispatch(actions.success(data.data)),
       error => dispatch(actions.failure())
     );
@@ -29,7 +29,7 @@ const getForums = () => {
  * @return {action}
  */
 const updateCurrentForum = (currentForum) => {
-  return actions.update(currentForum);
+    return actions.update(currentForum);
 };
 
 // update root class

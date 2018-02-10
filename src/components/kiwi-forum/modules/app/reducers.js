@@ -9,7 +9,7 @@ import * as types from "./types";
 const initialState = Map({
     fetchingForums: false,
     tags: null,
-    currentForum: 'general',
+    currentForum: '',
     error: false,
     rootclass: null,
     isOpenSidePanel: false,
@@ -20,15 +20,15 @@ const initialState = Map({
  * reducer for top level app state
  */
 export default handleActions({
-    [types.START_FETCHING_FORUMS]: (state, action) => {
+    [types.START_FETCHING_TAGS]: (state, action) => {
         return state.set('fetchingForums', true);
     },
-    [types.FETCHING_FORUMS_SUCCESS]: (state, action) => {
+    [types.FETCHING_TAGS_SUCCESS]: (state, action) => {
         return state.set('tags', action.payload)
             .set('fetchingForums', false)
             .set('error', false);
     },
-    [types.UPDATECURRENTFORUM]: (state, action) => {
+    [types.UPDATECURRENTTAGS]: (state, action) => {
         return state.set('currentForum', action.payload);
     },
     [types.UPDATE_ROOT_CLASS]: (state, action) => {

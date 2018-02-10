@@ -6,7 +6,7 @@ import { Container, Row, Col } from 'reactstrap';
 import SideNav from './Containers/SideNav';
 import ForumFeed from './Containers/ForumFeed';
 
-const App = (props) => (
+const App = () => (
     <Container>
         <SideNav />
         <ForumFeed />

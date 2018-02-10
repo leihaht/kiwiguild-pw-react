@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, withRouter } from 'react-router-dom';
 
 import { appOperations } from './components/kiwi-forum/modules/app';
 
 import classnames from 'classnames';
 
-import { Home, Forum, Discussion } from './views';
+import { Home, Forum, Discussion, Tags } from './viewContainers';
 import { Header } from './components';
 import Composer from './components/kiwi-forum/Components/Composer';
 
@@ -21,7 +21,8 @@ class App extends Component {
                 <div id="content" className="no-touch">
                     <Switch>
                         <Route exact path="/" component={Home} />
-                        <Route path="/forum/d" component={Discussion} />
+                        <Route path="/forum/d/" component={Discussion} />
+                        <Route path="/forum/tags" component={Tags} />
                         <Route path="/forum" component={Forum} />
                     </Switch>
                 </div>
@@ -31,8 +32,8 @@ class App extends Component {
     }
 };
 
-export default connect(
+export default withRouter(connect(
     (state) => ({
         rootclass: state.app.get('rootclass'),
     }),
-)(App);
+)(App));

@@ -6,12 +6,12 @@ import * as types from "./types";
 const initialState = Map({
   fetchingDiscussion: true,
   toggleingFavorite: false,
-  postingOpinion: false,
-  opinionContent: null,
-  opinionError: null,
+  postingComment: false,
+  commentContent: null,
+  commentError: null,
   deletingDiscussion: false,
   deletedDiscussion: false,
-  deletingOpinion: null,
+  deletingComment: null,
   discussion: null,
   error: null,
 });

@@ -7,13 +7,7 @@ const cx = classnames.bind(styles);
 
 import icon from 'helpers/icon';
 
-const buttonsFollow = [
-    {_id: 0, name: 'Be notified only when @mentioned.', icon: 'star-o'},
-    {_id: 1, name: 'Be notified of all replies.', icon: 'star'},
-    {_id: 2, name: 'Never be notified. Hide from the discussion list.', icon: 'eye-slash'}
-];
-
-class ItemSubscription extends Component {
+class DiscussionSubscription extends Component {
     constructor(props) {
         super(props);
 
@@ -28,6 +22,9 @@ class ItemSubscription extends Component {
         });
     }
     render() {
+        const {
+            buttonsFollow
+        } = this.props;
         return (
             <li className="item-subscription">
                 <ButtonDropdown
@@ -58,4 +55,4 @@ class ItemSubscription extends Component {
         )
     }
 }
-export default ItemSubscription;
+export default DiscussionSubscription;

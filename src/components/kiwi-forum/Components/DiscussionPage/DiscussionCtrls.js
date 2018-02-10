@@ -1,8 +1,5 @@
 import React, {Component} from 'react';
-import { connect } from 'react-redux';
 import { Button, ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
-
-import { appOperations } from '../../../../modules/app';
 
 import classnames from 'classnames/bind';
 import styles from 'flarum-style';
@@ -10,21 +7,11 @@ const cx = classnames.bind(styles);
 
 import icon from 'helpers/icon';
 
-const buttonsReply = [
-    {_id: 0, name: 'Reply',     icon: 'reply'},
-    {_id: 1, name: 'Rename',    icon: 'pencil'},
-    {_id: 2, name: 'Lock',      icon: 'lock'},
-    {_id: 3, name: 'Sticky',    icon: 'thumb-tack'},
-    {_id: 4, name: 'Edit Tags', icon: 'tag'},
-    {_id: 5, name: 'Delete',    icon: 'trash-o'},
-];
-class ItemControls extends Component {
+class DiscussionCtrls extends Component {
     constructor(props) {
         super(props);
 
         this.toggle = this.toggle.bind(this);
-        this.handleClick = this.handleClick.bind(this);
-        this.openComposer = this.openComposer.bind(this);
         this.state = {
             isOpen: false,
         };
@@ -34,13 +21,13 @@ class ItemControls extends Component {
             isOpen: !this.state.isOpen
         });
     }
-    handleClick(btnName) {
-        console.log('clicked: ' + btnName);
-    }
-    openComposer() {
-        this.props.openComposer();
-    }
     render() {
+        const {
+            discussionID,
+            openComposer,
+            buttonsReply,
+            handleClickDiscussionCtrl
+        } = this.props;
         return (
             <li className="item-controls">
                 <ButtonDropdown
@@ -48,7 +35,7 @@ class ItemControls extends Component {
                     toggle={this.toggle}
                     className={cx('ButtonGroup', 'Dropdown', 'dropdown', 'App-primaryControl', 'Dropdown--split')}
                 >
-                    <Button id="caret" className="SplitDropdown-button Button Button--primary hasIcon" onClick={this.openComposer}>
+                    <Button id="caret" className="SplitDropdown-button Button Button--primary hasIcon" onClick={openComposer}>
                         {icon('reply', {className: cx('Button-icon')})}
                         <span className="Button-label">Reply</span>
                     </Button>
@@ -56,10 +43,10 @@ class ItemControls extends Component {
                         {icon('ellipsis-v', {className: cx('Button-icon')})}{icon('caret-down', {className: cx('Button-caret')})}
                     </DropdownToggle>
                     <DropdownMenu tag='ul' className="Dropdown-menu dropdown-menu Dropdown-menu--right" right>
-                        {buttonsReply.map( btn => {
+                        {buttonsReply.map( (btn, index) => {
                             return (
-                                <li key={btn._id}>
-                                    <button className="hasIcon" type="button" title={btn.name} onClick={() => this.handleClick(btn.name)}>
+                                <li key={index}>
+                                    <button className="hasIcon" type="button" title={btn.name} onClick={() => handleClickDiscussionCtrl(btn.name, discussionID)}>
                                         {icon(btn.icon, {className: cx('Button-icon')})}
                                         <span className="Button-label">{btn.name}</span>
                                     </button>
@@ -72,9 +59,5 @@ class ItemControls extends Component {
         )
     }
 }
-export default connect(
-    null,
-    (dispatch) => ({
-        openComposer: () => {dispatch(appOperations.openComposer())},
-    })
-)(ItemControls);
+
+export default DiscussionCtrls;

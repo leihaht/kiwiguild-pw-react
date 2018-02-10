@@ -6,7 +6,7 @@ const cx = classnames.bind(styles);
 
 import icon from 'helpers/icon';
 
-class ItemScrubber extends Component {
+class DiscussionScrubber extends Component {
     constructor(props) {
         super(props);
 
@@ -41,4 +41,4 @@ class ItemScrubber extends Component {
         )
     }
 }
-export default ItemScrubber;
+export default DiscussionScrubber;

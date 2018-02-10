@@ -6,28 +6,16 @@ import classnames from 'classnames/bind';
 import styles from 'flarum-style';
 const cx = classnames.bind(styles);
 
-const buttons = [
-    {_id: 0, label: 'Latest'},
-    {_id: 1, label: 'Top'},
-    {_id: 2, label: 'Newest'},
-    {_id: 3, label: 'Oldest'}
-]
+
 
 class Toolbar extends Component {
     constructor(props) {
         super(props);
 
-        this.handleDropdownButton = this.handleDropdownButton.bind(this);
         this.toggle = this.toggle.bind(this);
         this.state = {
             dropdownOpen: false,
-            currentButton: this.props.initial,
         };
-    }
-    handleDropdownButton(btn) {
-        this.setState({
-            currentButton: btn.label
-        });
     }
     toggle() {
         this.setState({
@@ -36,22 +24,27 @@ class Toolbar extends Component {
     }
 
   render() {
+      const {
+          currentButton,
+          sortButtons,
+          onChangeSortingMethod
+      } = this.props;
     return (
         <div className={cx('IndexPage-toolbar')}>
             <ul className={cx('IndexPage-toolbar-view')}>
                 <li className={cx('item-sort')}>
                     <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.toggle} className={cx('ButtonGroup', 'Dropdown', 'dropdown')}>
                         <DropdownToggle className={cx('Dropdown-toggle', 'Button')} caret>
-                            <span className="Button-label">{buttons[0].label}</span>
+                            <span className="Button-label">{currentButton}</span>
                         </DropdownToggle>
                         <DropdownMenu tag='ul' className={cx('Dropdown-menu')}>
                             {
-                                buttons.map( btn => {
+                                sortButtons.map( (btn, index) => {
                                     return (
                                         <DropdownItem
-                                            key={btn._id}
+                                            key={index}
                                             tag='li'
-                                            onClick={() => this.handleDropdownButton(btn)}>{btn.label}</DropdownItem>
+                                            onClick={() => onChangeSortingMethod(btn)}>{btn.label}</DropdownItem>
                                 )})
                             }
                         </DropdownMenu>

@@ -8,7 +8,7 @@ const initialState = Map({
   discussions: null,
   fetchingPinnedDiscussions: true,
   pinnedDiscussions: null,
-  sortingMethod: 'date',
+  sortingMethod: '',
   error: null,
 });
 

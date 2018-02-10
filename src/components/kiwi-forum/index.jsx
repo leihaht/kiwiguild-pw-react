@@ -13,13 +13,30 @@ class KiwiForum extends Component {
         match
       } = this.props;
 
-      // get all forum list
-      getForums();
-
       // set current forum based on route
-      const currentForum = match.params.forum || 'general';
+      const currentForum = match.params.forum || '';
       updateCurrentForum(currentForum);
 
+      // get all forum list
+      getForums(currentForum);
+    }
+
+    componentDidUpdate() {
+      const {
+        tags,
+        match,
+        currentForum,
+        updateCurrentForum,
+        getForums
+      } = this.props;
+
+      const newCurrentForum = (match.params.forum !== undefined) ? match.params.forum : '';
+
+      // update current forum if necessery
+      if (newCurrentForum !== currentForum) {
+          updateCurrentForum(newCurrentForum);
+          getForums(newCurrentForum);
+      }
     }
 
     render() {
@@ -52,7 +69,7 @@ let mapStateToProps = (state) => {
 */
 let mapDispatchToProps = (dispatch) => {
     return {
-      getForums: () => { dispatch(appOperations.getForums()); },
+      getForums: (currentForum) => { dispatch(appOperations.getForums(currentForum)); },
       updateCurrentForum: (currentForum) => { dispatch(appOperations.updateCurrentForum(currentForum)); },
     };
 }

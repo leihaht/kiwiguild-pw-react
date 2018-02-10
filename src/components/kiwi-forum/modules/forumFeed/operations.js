@@ -5,7 +5,7 @@ import axios from 'axios';
  * feed apis
  */
 const fetchDiscussions = (forum_id, sortingMethod) => {
-    return axios.get(`http://localhost/processwire-test/api/tags/${forum_id}/discussions?sort=${sortingMethod}`);
+    return axios.get(`http://localhost/processwire-test/api/discussions?tag=${forum_id}&sort=${sortingMethod}`);
 };
 
 const fetchPinnedDiscussions = (forum_id) => {
@@ -22,24 +22,32 @@ const fetchPinnedDiscussions = (forum_id) => {
  */
 const getDiscussions = (forumId, feedChanged=false, sortingChanged=false) => {
   return (dispatch, getState) => {
-    const sortingMethod = getState().feed.sortingMethod;
+    const sortingMethod = getState().feed.get('sortingMethod');
 
     // show the loading message when user change forum or change sorting method
     if (feedChanged || sortingChanged) dispatch(actions.start_fetching());
 
-    if (!forumId) {
-      dispatch(actions.invalid());
-    }
-    else {
+    //if (!forumId) {
+      //dispatch(actions.invalid());
+    //}
+    //else {
       // start fetching discussions
       fetchDiscussions(forumId, sortingMethod).then(
         data => dispatch(actions.success(data.data)),
         error => dispatch(actions.failure())
       );
-    }
+    //}
   };
 };
 
+/**
+ * Update sorting method
+ * @param  {String} method
+ * @return {action}
+ */
+const updateSortingMethod = actions.update_sorting;
+
 export {
-    getDiscussions
+    getDiscussions,
+    updateSortingMethod
 };
