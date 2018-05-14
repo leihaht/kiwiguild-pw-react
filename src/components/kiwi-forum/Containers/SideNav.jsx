@@ -31,7 +31,7 @@ class SideNav extends Component {
 
 export default connect(
     (state) => ({
-        tags: state.app.get('tags'),
+        tags: state.app.get('tags').toJS(),
         currentForum: state.app.get('currentForum'),
     }),
     null

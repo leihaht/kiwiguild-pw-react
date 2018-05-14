@@ -70,7 +70,8 @@ module.exports = {
             //'jquery': require.resolve('jquery')
             'font-awesome': path.resolve(__dirname, "node_modules/font-awesome/css/font-awesome.min.css"),
             'flarum-style': path.resolve(__dirname, "src/styles/flarum.scss"),
-            'helpers' : path.resolve(__dirname, "src/lib/helpers")
+            'helpers' : path.resolve(__dirname, "src/lib/helpers"),
+            'modules' : path.resolve(__dirname, "src/modules")
         }
     },
     module: {

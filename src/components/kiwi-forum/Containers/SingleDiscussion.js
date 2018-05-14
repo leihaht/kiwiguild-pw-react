@@ -7,7 +7,7 @@ const cx = classnames.bind(styles);
 
 import DiscussionPage from '../Components/DiscussionPage';
 import DiscussionList from '../Components/DiscussionPage/DiscussionList';
-import { feedOperations } from '../modules/discussionFeed';
+import { feedOperations } from 'modules/discussionFeed';
 
 class SingleDiscussion extends Component {
     componentDidMount() {
@@ -53,7 +53,7 @@ export default connect(
     (state) => ({
         discussion: state.discussion.get('discussion'),
         fetchingDiscussion: state.discussion.get('fetchingDiscussion'),
-        error: state.discussion.get('error'),
+        error: state.discussion.get('error')
     }),
     (dispatch) => ({
         getDiscussion: (discussionSlug) => {dispatch(feedOperations.getDiscussion(discussionSlug))},

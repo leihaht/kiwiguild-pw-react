@@ -4,7 +4,7 @@ import classnames from 'classnames/bind';
 import styles from 'flarum-style';
 const cx = classnames.bind(styles);
 
-import { feedOperations } from '../modules/forumFeed';
+import { feedOperations } from 'modules/forumFeed';
 
 import FeedBox from '../Components/FeedBox';
 import Toolbar from '../Components/Toolbar';

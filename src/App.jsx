@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Route, Switch, withRouter } from 'react-router-dom';
 
-import { appOperations } from './components/kiwi-forum/modules/app';
+//import { appOperations } from './components/kiwi-forum/modules/app';
 
 import classnames from 'classnames';
 
 import { Home, Forum, Discussion, Tags } from './viewContainers';
 import { Header } from './components';
-import Composer from './components/kiwi-forum/Components/Composer';
+import ComposerContainer from './components/kiwi-forum/Containers/ComposerContainer';
 
 import 'font-awesome';
 
@@ -26,7 +26,7 @@ class App extends Component {
                         <Route path="/forum" component={Forum} />
                     </Switch>
                 </div>
-                <Composer />
+                <ComposerContainer />
             </main>
         );
     }

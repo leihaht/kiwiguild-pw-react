@@ -1,37 +1,31 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { formValueSelector } from 'redux-form';
 
-import * as appActions from 'modules/app.module';
+import { appOperations } from 'modules/app';
 
 import ReplyPlaceholder from '../Components/DiscussionPage/ReplyPlaceholder';
 
-class ReplyPlaceholderContainer extends Component {
+class AvatarContainer extends Component {
     render() {
         const {
             isOpenComposer,
-            openComposer,
-            composerBody
+            openComposer
         } = this.props;
         return (
             <ReplyPlaceholder
                 isOpenComposer={isOpenComposer}
                 openComposer={openComposer}
-                composerBody={composerBody}
             />
         );
     }
 };
 
-const selector = formValueSelector('composer') // <-- same as form name
-
 export default connect(
     (state) => ({
         isOpenComposer: state.app.get('isOpenComposer'),
         //discussion: state.discussion.get('discussion'),
-        composerBody: selector(state, 'body')
     }),
     (dispatch) => ({
-        openComposer: () => {dispatch(appActions.open_composer())},
+        openComposer: () => {dispatch(appOperations.openComposer())},
     })
-)(ReplyPlaceholderContainer);
+)(AvatarContainer);

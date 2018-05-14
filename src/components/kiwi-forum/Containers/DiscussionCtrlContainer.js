@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 
-import { appOperations } from '../modules/app';
+import * as appActions from 'modules/app.module';
 
 import classnames from 'classnames/bind';
 import styles from 'flarum-style';
@@ -65,6 +65,6 @@ export default connect(
         discussion: state.discussion.get('discussion'),
     }),
     (dispatch) => ({
-        openComposer: () => {dispatch(appOperations.openComposer())},
+        openComposer: () => {dispatch(appActions.openComposer())},
     })
 )(DiscussionCtrlContainer);

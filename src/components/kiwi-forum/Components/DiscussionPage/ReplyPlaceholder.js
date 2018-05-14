@@ -4,7 +4,10 @@ import classnames from 'classnames/bind';
 import styles from 'flarum-style';
 const cx = classnames.bind(styles);
 
-const ReplyPlaceholder = ({ isOpenComposer, openComposer }) => {
+const ReplyPlaceholder = ({
+    isOpenComposer,
+    openComposer,
+    composerBody }) => {
     function renderComposerOpened() {
         return (
             <article className={cx('Post', 'CommentPost', 'editing')}>
@@ -16,7 +19,7 @@ const ReplyPlaceholder = ({ isOpenComposer, openComposer }) => {
                         </h3>
                     </div>
                 </header>
-                <div className="Post-body"></div>
+                <div className="Post-body">{composerBody}</div>
             </article>
         );
     }
