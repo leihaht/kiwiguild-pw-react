@@ -47,5 +47,6 @@
 	</div>
 <script type="text/javascript" src="<?php echo $config->urls->templates?>scripts/vendor.min.js"></script>
 <script type="text/javascript" src="<?php echo $config->urls->templates?>scripts/app.js"></script>
+<?=$extra_script;?>
 </body>
 </html>

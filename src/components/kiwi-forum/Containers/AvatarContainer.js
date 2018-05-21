@@ -1,31 +1,32 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
-import { appOperations } from 'modules/app';
-
-import ReplyPlaceholder from '../Components/DiscussionPage/ReplyPlaceholder';
+import classnames from 'classnames';
 
 class AvatarContainer extends Component {
     render() {
         const {
-            isOpenComposer,
-            openComposer
+            avatarUrl,
+            className,
+            user
         } = this.props;
-        return (
-            <ReplyPlaceholder
-                isOpenComposer={isOpenComposer}
-                openComposer={openComposer}
-            />
-        );
+        const avatarClass = classnames('Avatar', className);
+        if(user) {
+            const content = user.get('name').charAt(0).toUpperCase();
+            //attrs.style = {background: props.user.color};
+        }else {
+            const content = '';
+        }
+
+        if(avatarUrl) {
+            return <img className={avatarClass} src={avatarUrl}/>
+        }
+        return <span className={avatarClass}>{content}</span>
     }
 };
 
 export default connect(
     (state) => ({
-        isOpenComposer: state.app.get('isOpenComposer'),
-        //discussion: state.discussion.get('discussion'),
+        user: state.session.get('user')
     }),
-    (dispatch) => ({
-        openComposer: () => {dispatch(appOperations.openComposer())},
-    })
+    null
 )(AvatarContainer);

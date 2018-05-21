@@ -1,25 +1,38 @@
 import React, {Component} from 'react';
 
+import AvatarContainer from '../../Containers/AvatarContainer';
+
 import classnames from 'classnames/bind';
 import styles from 'flarum-style';
 const cx = classnames.bind(styles);
 
+import avatar from 'helpers/avatar';
+import username from 'helpers/username';
+import nl2br from '../../../../lib/react-nl2br';
+
 const ReplyPlaceholder = ({
     isOpenComposer,
     openComposer,
-    composerBody }) => {
+    composerBody,
+    user }) => {
     function renderComposerOpened() {
         return (
             <article className={cx('Post', 'CommentPost', 'editing')}>
-                <header className="Post-header">
+                <header className={cx('Post-header')}>
                     <div className="PostUser">
                         <h3>
-                            <span className="Avatar PostUser-avatar">A</span>
-                            <span className="username">username</span>
+                            {avatar(user, {className: cx('PostUser-avatar')})}
+                            {username(user)}
                         </h3>
                     </div>
                 </header>
-                <div className="Post-body">{composerBody}</div>
+                <div className="Post-body">
+                    {
+                        composerBody && composerBody.trim().split('\n\n').map( (line, index) =>
+                            <p key={index}>{line && nl2br(line.trim())}</p>
+                        )
+                    }
+                </div>
             </article>
         );
     }
@@ -27,7 +40,7 @@ const ReplyPlaceholder = ({
         return (
             <article className={cx('Post', 'ReplyPlaceholder')} onClick={openComposer}>
                 <header className="Post-header">
-                    <span className="Avatar PostUser-avatar">A</span>Write a Reply...</header>
+                    {avatar(user, {className: cx('PostUser-avatar')})}Write a Reply...</header>
             </article>
         )
     }

@@ -16,18 +16,20 @@ class App extends Component {
     render () {
         const {rootclass} = this.props;
         return (
-            <main className={classnames('App-content', rootclass)}>
+            <div id="app" className={classnames('App', 'affix', rootclass)}>
                 <Header />
-                <div id="content" className="no-touch">
-                    <Switch>
-                        <Route exact path="/" component={Home} />
-                        <Route path="/forum/d/" component={Discussion} />
-                        <Route path="/forum/tags" component={Tags} />
-                        <Route path="/forum" component={Forum} />
-                    </Switch>
-                </div>
-                <ComposerContainer />
-            </main>
+                <main className={classnames('App-content')}>
+                    <div id="content" className="no-touch">
+                        <Switch>
+                            <Route exact path="/" component={Home} />
+                            <Route path="/forum/d/" component={Discussion} />
+                            <Route path="/forum/tags" component={Tags} />
+                            <Route path="/forum" component={Forum} />
+                        </Switch>
+                    </div>
+                    <ComposerContainer />
+                </main>
+            </div>
         );
     }
 };

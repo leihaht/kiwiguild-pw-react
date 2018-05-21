@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Container, Collapse } from 'reactstrap';
-import { Field, reduxForm } from 'redux-form';
+import { Field } from 'redux-form';
 
 import classnames from 'classnames/bind';
 import styles from 'flarum-style';
@@ -13,7 +13,8 @@ let Composer = ({
     closeComposer,
     fetchingDiscussion,
     discussion,
-    handleSubmit }) => (
+    handleSubmit,
+    onSubmit }) => (
     <div className="App-composer">
     <Collapse isOpen={isOpenComposer}>
         { !fetchingDiscussion &&
@@ -42,7 +43,7 @@ let Composer = ({
                                 </button>
                             </li>
                         </ul>
-                        <form className="Composer-content" onSubmit={handleSubmit}>
+                        <form className="Composer-content" onSubmit={handleSubmit(onSubmit)}>
                             <div className="ComposerBody ">
                                 <span className="Avatar ComposerBody-avatar">A</span>
                                 <div className="ComposerBody-content">
@@ -62,7 +63,7 @@ let Composer = ({
                                             </div>
                                             <ul className="TextEditor-controls Composer-footer">
                                                 <li className="item-submit App-primaryControl">
-                                                    <button className="Button Button--primary hasIcon" itemclassname="App-primaryControl" type="button" title="Post Reply">
+                                                    <button className="Button Button--primary hasIcon" itemclassname="App-primaryControl" type="submit" title="Post Reply">
                                                         {icon('check', {className: cx('Button-icon')})}
                                                         <span className="Button-label">Post Reply</span>
                                                     </button>
@@ -88,7 +89,4 @@ let Composer = ({
     </div>
 );
 
-export default reduxForm({
-  // a unique name for the form
-  form: 'composer'
-})(Composer);
+export default Composer;
