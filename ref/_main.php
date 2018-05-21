@@ -37,6 +37,7 @@
 	<title><?php echo $title; ?></title>
 	<meta name="description" content="<?php echo $page->summary; ?>" />
 	<link rel="stylesheet" href="<?php echo $config->urls->templates?>styles/vendor.min.css">
+	<link rel="stylesheet" href="<?php echo $config->urls->templates?>styles/app.min.css">
 </head>
 <body>
 
@@ -45,8 +46,8 @@
 		<?php echo $content; ?>
 
 	</div>
+<?=$extra_script;?>
 <script type="text/javascript" src="<?php echo $config->urls->templates?>scripts/vendor.min.js"></script>
 <script type="text/javascript" src="<?php echo $config->urls->templates?>scripts/app.js"></script>
-<?=$extra_script;?>
 </body>
 </html>
