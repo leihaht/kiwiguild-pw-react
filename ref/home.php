@@ -30,12 +30,24 @@ $tokenValue = $this->session->CSRF->getTokenValue();
 
 $extra_script = <<<EOD
 <script>
-    boot = {
-        "tags": $tags,
-        "discussions": $discussions,
+    window.__PRELOADED_STATE__ = {
+        "app": {
+            "rootclass": null,
+            "currentForum": '',
+            "tags": $tags,
+            "discussions": $discussions
+        },
         "session": {
-            "userId": $user->id,
-            "csrfToken": "$tokenValue"
+            "user": {
+                "_id": $user->id,
+                "name": "$user->name",
+                "email": "$user->email",
+                "role":"user"
+            },
+            "csrfToken": "$tokenValue",
+            "isLoggedin": "{$user->isLoggedin()}",
+            "fetching": false,
+            "error": false
         }
     };
 </script>
