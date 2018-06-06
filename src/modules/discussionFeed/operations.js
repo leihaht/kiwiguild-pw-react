@@ -1,11 +1,14 @@
 import * as actions from "./actions";
 import axios from 'axios';
 
+const isDevelopment = process.env.NODE_ENV === 'development'; // 환경이 개발모드인지 확인합니다
+const basename = isDevelopment ? 'http://localhost/kiwigw-reactjs' : '/kiwigw';
+
 /**
  * feed apis
  */
 const fetchSingleDiscussion = (discussionSlug) => {
-    return axios.get(`http://localhost/processwire-test/api/discussions/${discussionSlug}`);
+    return axios.get(`${basename}/api/discussions/${discussionSlug}`);
 };
 
 /**

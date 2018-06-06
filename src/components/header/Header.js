@@ -1,5 +1,6 @@
 import React from 'react';
 import { Container, Collapse, Navbar, NavbarToggler, NavbarBrand, Nav,
+    NavItem, NavLink,
     UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem
 } from 'reactstrap';
 import { Link } from 'react-router-dom';
@@ -14,14 +15,14 @@ const Header = ({navitems, isLoggedin, toggle, isOpen, username}) => (
                 <Collapse isOpen={isOpen} navbar>
                     <HeaderNav navitems={navitems} />
                     {!isLoggedin &&
-                        <ul classNamename="navbar-nav ml-auto">
-                            <li className="nav-item">
-                                <button className="nav-link">Sign Up</button>
-                            </li>
-                            <li className="nav-item">
-                                <button className="nav-link">Log In</button>
-                            </li>
-                        </ul>
+                        <Nav className="ml-auto" navbar>
+                            <NavItem>
+                                <NavLink href="#">Sign Up</NavLink>
+                            </NavItem>
+                            <NavItem>
+                                <NavLink href="#">Log In</NavLink>
+                            </NavItem>
+                        </Nav>
                     }
                     {isLoggedin &&
                         <Nav className="ml-auto" navbar>

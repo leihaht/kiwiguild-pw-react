@@ -2,12 +2,15 @@ import { createAction, handleActions } from 'redux-actions';
 import { Map, fromJS } from 'immutable';
 import axios from 'axios';
 
+const isDevelopment = process.env.NODE_ENV === 'development'; // 환경이 개발모드인지 확인합니다
+const basename = isDevelopment ? 'http://localhost/kiwigw-reactjs' : '/kiwigw';
+
 const fetchForums = (forum_id) => {
-  return axios.get(`http://localhost/processwire-test/api/tags/${forum_id}`);
+  return axios.get(`${basename}/api/tags/${forum_id}`);
 };
 
 const fetchUser = () => {
-  return axios.get(`http://localhost/processwire-test/api/users/this`);
+  return axios.get(`${basename}/api/users/this`);
 };
 
 // 액션 타입을 정의해줍니다.

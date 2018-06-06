@@ -1,15 +1,18 @@
 import * as actions from "./actions";
 import axios from 'axios';
 
+const isDevelopment = process.env.NODE_ENV === 'development'; // 환경이 개발모드인지 확인합니다
+const basename = isDevelopment ? 'http://localhost/kiwigw-reactjs' : '/kiwigw';
+
 /**
  * feed apis
  */
 const fetchDiscussions = (forum_id, sortingMethod) => {
-    return axios.get(`http://localhost/processwire-test/api/discussions?tag=${forum_id}&sort=${sortingMethod}`);
+    return axios.get(`${basename}/api/discussions?tag=${forum_id}&sort=${sortingMethod}`);
 };
 
 const fetchPinnedDiscussions = (forum_id) => {
-  return axios.get(`/api/tags/${forum_id}/pinned_discussions`);
+  return axios.get(`${basename}/api/tags/${forum_id}/pinned_discussions`);
 };
 
 /**

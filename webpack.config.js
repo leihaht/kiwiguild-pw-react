@@ -6,6 +6,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
+    mode: "development",
     entry: {
         app: [
             'webpack-dev-server/client?http://localhost:3000',
@@ -38,9 +39,7 @@ module.exports = {
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NamedModulesPlugin(),
         new webpack.DefinePlugin({
-            'process.env': {
-                NODE_ENV: JSON.stringify('development')
-            }
+            'process.env.NODE_ENV': JSON.stringify('development')
         }),
         new webpack.ProvidePlugin({
             //$: 'jquery',

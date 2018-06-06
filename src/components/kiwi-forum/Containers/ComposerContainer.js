@@ -35,13 +35,13 @@ class ComposerContainer extends Component {
             height: null,
             position: composerPositionEnum.HIDDEN
         };
-        this.computedHeight = this.computedHeight.bind(this);
-        this.setHeight = this.setHeight.bind(this);
+        //this.computedHeight = this.computedHeight.bind(this);
+        //this.setHeight = this.setHeight.bind(this);
     }
     componentDidMount() {
         //const height = document.getElementById('container').clientHeight;
         //this.setState({ height });
-        console.log('computedHeight:', this.computedHeight());
+        //console.log('computedHeight:', this.computedHeight());
     }
     /**
     * Computed the composer's current height, based on the intended height, and
@@ -64,12 +64,12 @@ class ComposerContainer extends Component {
         // Otherwise, if it's normal or hidden, then we use the intended height.
         // We don't let the composer get too small or too big, though.
         return Math.max(this.minimumHeight, Math.min(this.state.height, maximumHeight));
-    }
+    }/*
     setHeight(node) {
         if(node && !this.state.height){
             this.setState({height: node.offsetHeight});
         }
-    }
+    }*/
     render() {
         const {
             isOpenComposer,
@@ -86,7 +86,6 @@ class ComposerContainer extends Component {
                 fetchingDiscussion={fetchingDiscussion}
                 handleSubmit={handleSubmit}
                 onSubmit={submitForm}
-                ref={node => {this.setHeight(node)}}
             />
         );
     }

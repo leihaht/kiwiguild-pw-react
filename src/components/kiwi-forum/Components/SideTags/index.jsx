@@ -21,12 +21,14 @@ const SideTags = ({ tags, currentForum, more }) => (
                     </NavLink>
             </li>
             <li className={cx('item-tags')}>
-                <a href="/forum/tags"
+                <NavLink
                     active="false"
                     className={cx('hasIcon')}
                     type="button"
+                    to='/forum/tags/'
                     title="Tags">
-                        <i className={cx('icon', 'fa', 'fa-th-large', 'Button-icon')}></i><span className={cx('Button-label')}>Tags</span></a>
+                        <i className={cx('icon', 'fa', 'fa-th-large', 'Button-icon')}></i><span className={cx('Button-label')}>Tags</span>
+                </NavLink>
             </li>
             <li className={cx('Dropdown-separator')}></li>
             { tags.map( (t, index) => {
